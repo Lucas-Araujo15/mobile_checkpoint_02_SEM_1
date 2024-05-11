@@ -5,7 +5,7 @@ import { useGlobalState } from "../hooks/GlobalState";
 interface DeleteModalProps {
     isModalOpen: boolean
     handleModal: () => void;
-    id: number;
+    id: string;
 }
 
 export default function DeleteModal({handleModal, isModalOpen, id}: DeleteModalProps) {

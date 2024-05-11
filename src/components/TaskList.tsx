@@ -5,11 +5,11 @@ import { Ionicons } from "@expo/vector-icons"
 import DeleteModal from "./DeleteModal"
 
 interface TaskItemProps {
-    id: number
-    title: string
+    id: string
+    name: string
 }
 
-function TaskItem({ id, title }: TaskItemProps) {
+function TaskItem({ id, name }: TaskItemProps) {
     const { updateTask } = useGlobalState()
 
     const [updating, setUpdating] = useState(false)
@@ -20,11 +20,11 @@ function TaskItem({ id, title }: TaskItemProps) {
         setIsModalOpen(!isModalOpen)
     }
 
-    const [newTitle, setNewTitle] = useState(title)
+    const [newName, setNewName] = useState(name)
 
     function handleUpdate() {
         if (updating) {
-            updateTask(id, newTitle)
+            updateTask(id, newName)
         }
         setUpdating(!updating)
     }
@@ -46,12 +46,12 @@ function TaskItem({ id, title }: TaskItemProps) {
             {updating ? (
                 <Input
                     flex={3}
-                    value={newTitle}
-                    onChangeText={setNewTitle}
+                    value={newName}
+                    onChangeText={setNewName}
                     color={"white"}
                 />
             ) : (
-                <Text color={'#FFF'} flex={3}>{title}</Text>
+                <Text color={'#FFF'} flex={3}>{name}</Text>
             )}
 
             <IconButton
@@ -76,7 +76,7 @@ export default function TaskList() {
     return (
         <FlatList
           data={tasks} 
-          renderItem={({ item }) => <TaskItem id={item.id} title={item.title} />} 
+          renderItem={({ item }) => <TaskItem id={item.id} name={item.name} />} 
           keyExtractor={(item) => item.id.toString()} 
           contentContainerStyle={{ flexGrow: 1 }}
         />

@@ -38,7 +38,7 @@ export function GlobalStateProvider({ children }: GlobalStateProviderProps) {
             }
             
             const { tasks } = await response.json();
-            console.log(tasks)
+
             setTasks(tasks)
         } catch (error) {
             console.error('Erro ao carregar as tarefas:', error);
@@ -60,8 +60,6 @@ export function GlobalStateProvider({ children }: GlobalStateProviderProps) {
             }
 
             const data = await response.json() as Task
-
-            console.log(data)
 
             setTasks([...tasks, data])
         } catch (error) {
@@ -86,8 +84,6 @@ export function GlobalStateProvider({ children }: GlobalStateProviderProps) {
             console.log('Tarefa editada com sucesso');
 
             const newTasks = tasks.map(task => task.id === id ? { ...task, name: newName } : task)
-
-            console.log(newTasks)
 
             setTasks(newTasks)
 
